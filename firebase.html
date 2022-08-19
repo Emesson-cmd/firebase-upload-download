@@ -1,0 +1,119 @@
+<html>
+
+    <head>
+
+        <title>Sistema de Upload com Firebase</title>
+
+    </head>
+
+    <body>
+
+
+
+    <form method="post">
+
+        <input type="file" name="arquivo" />
+
+        <progress value="0"></progress>
+
+    </form>
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-storage.js"></script>
+
+
+
+<script>
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  var firebaseConfig = {
+
+    apiKey: "AIzaSyCwHivUInQPk6TXjcb1iUYJlgG-TnYxnUU",
+    authDomain: "instagram-clone-curso-2cbc3.firebaseapp.com",
+    projectId: "instagram-clone-curso-2cbc3",
+    storageBucket: "instagram-clone-curso-2cbc3.appspot.com",
+    messagingSenderId: "1058538116152",
+    appId: "1:1058538116152:web:2e300934e4ec79effd42cd",
+    measurementId: "G-9HKD6P0T8J"
+
+  };
+
+  // Initialize Firebase
+
+  firebase.initializeApp(firebaseConfig);
+
+</script>
+
+    <script>
+
+        
+
+        //Upload de arquivos.
+
+
+
+        const storage = firebase.storage();
+
+
+
+        const input = document.querySelector('input[type=file]');
+
+
+
+        input.addEventListener('change',(e)=>{
+
+            let file = e.target.files[0];
+
+
+
+            const uploadTask = storage.ref(`images02/${e.target.files[0].name}`)
+
+            .put(e.target.files[0]);
+
+
+
+            uploadTask.on("state_changed",function(snapshot){
+
+
+
+                let progress = (snapshot.bytesTransferred/snapshot.totalBytes) * 1;
+
+
+
+                document.querySelector('progress').value = progress;
+
+
+
+            },function(error){},function(){
+
+                console.log('upload realizado com sucesso');
+
+            })
+
+
+
+        });
+
+
+
+
+
+    </script>
+
+
+
+
+
+    </body>
+
+</html>
