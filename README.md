@@ -1,3 +1,7 @@
+# About this project
+
+It is a simple project where I show how to uppload files to firebase.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
